@@ -1,9 +1,7 @@
 package main
 
 import (
-	"fmt"
 	"log"
-	"os"
 
 	_contactHandler "github.com/VinncentWong/DiverBE/app/contact/handler"
 	_contactRepository "github.com/VinncentWong/DiverBE/app/contact/repository"
@@ -52,5 +50,5 @@ func main() {
 	}
 	routing.InitializeStoryRouting(storyHandler)
 	routing.InitializeContactRouting(contactHandler)
-	r.Run(fmt.Sprintf(":%s", os.Getenv("APP_PORT")))
+	r.Run()
 }
