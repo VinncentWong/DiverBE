@@ -22,11 +22,8 @@ import (
 )
 
 func main() {
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("error occured ", err.Error())
-	}
-	err = infrastructure.ConnectToDatabase()
+	godotenv.Load()
+	err := infrastructure.ConnectToDatabase()
 	if err != nil {
 		log.Fatal("error occured ", err.Error())
 	}
