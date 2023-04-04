@@ -54,4 +54,7 @@ func (r *Routing) InitializeStoryRouting(handler *_storyHandler.StoryHandler) {
 func (r *Routing) InitializeContactRouting(handler *_contactHandler.ContactHandler) {
 	group := r.router.Group("/contact")
 	group.POST("/create", handler.CreateContact)
+	group.GET("/gets", handler.GetContacts)
+	group.GET("/get/:id", handler.GetContact)
+	group.DELETE("/delete/:id", handler.DeleteContact)
 }
