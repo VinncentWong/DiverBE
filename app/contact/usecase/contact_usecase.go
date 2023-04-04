@@ -11,6 +11,9 @@ import (
 
 type IContactUsecase interface {
 	CreateContact(dto _contactDto.CreateContactDto) (domain.Contact, error)
+	GetContacts() ([]domain.Contact, error)
+	GetContact(id primitive.ObjectID) (domain.Contact, error)
+	DeleteContact(id primitive.ObjectID) error
 }
 
 type ContactUsecase struct {
@@ -36,4 +39,18 @@ func (u *ContactUsecase) CreateContact(dto _contactDto.CreateContactDto) (domain
 		return domain.Contact{}, err
 	}
 	return result, nil
+}
+
+func (u *ContactUsecase) GetContacts() ([]domain.Contact, error) {
+	result, err := u.r.GetContacts()
+	return result, err
+}
+
+func (u *ContactUsecase) GetContact(id primitive.ObjectID) (domain.Contact, error) {
+	result, err := u.r.GetContact(id)
+	return result, err
+}
+
+func (u *ContactUsecase) DeleteContact(id primitive.ObjectID) error {
+	return u.r.DeleteContact(id)
 }
