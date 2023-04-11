@@ -15,6 +15,7 @@ import (
 	_storyUsecase "github.com/VinncentWong/DiverBE/app/story/usecase"
 	"github.com/VinncentWong/DiverBE/infrastructure"
 	"github.com/VinncentWong/DiverBE/rest"
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 )
@@ -28,6 +29,11 @@ func main() {
 	infrastructure.ConnectToStorage()
 
 	r := gin.Default()
+	r.Use(cors.New(cors.Config{
+		AllowOrigins: []string{"*"},
+		AllowMethods: []string{"*"},
+		AllowHeaders: []string{"*"},
+	}))
 
 	diverRepository := _diverRepository.NewDiverRepository()
 	diverUsecase := _diverUsecase.NewDiverUsecase(diverRepository)
